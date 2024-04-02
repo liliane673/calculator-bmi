@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <title>Kalkutalor BMI</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    
+    <body>
+        <header>
+            <h1>
+                Kalkulator BMI
+            </h1>
+        </header>
+        
+        <main class="main-page">
+            <section class="calculation-page">
+                <h2>
+                    Apa Itu Kalkulator BMI?
+                </h2>
+                <p>
+                    Kalkulator BMI adalah alat yang digunakan untuk mengukur Indeks Massa Tubuh 
+                    seseorang berdasarkan berat dan tinggi badan mereka. 
+                    BMI adalah metode yang umum digunakan untuk menilai apakah seseorang memiliki 
+                    berat badan yang sehat, berlebihan, atau kurang. Rumus perhitungan BMI 
+                    adalah berat badan (kg) dibagi oleh tinggi badan (m) kuadrat.
+                </p>
+
+                <section class="calculation-section">
+                    <form class="form-calculation" id="form-calculation" action="/calculate" method="POST" onsubmit="submit_form()">
+                        <label>Jenis Kelamin</label><br>
+                        <section class="gender-container">    
+                            <label class="container"> 
+                                <input type="radio" id="male" name="gender" value="male" required> Pria
+                            </label>
+                            <label class="container"> 
+                                <input type="radio" id="female" name="gender"  value="female" required> Wanita
+
+                            </label>
+                        </section>
+                        
+    
+                        <label for="weight">Berat Badan(kg)</label><br>
+                        <input type="number" min="1"  id="weight" name="weight" placeholder="kilogram" required><br>
+                        
+                        <label for="age">Usia (tahun)</label><br>
+                        <input type="number" min="1" id="age" name="age" placeholder="tahun" required><br>
+
+                        <label for="height">Tinggi Badan (cm)</label><br>
+                        <input type="number" min="1" id="height" name="height" placeholder="cm" required><br>
+
+                        <input type="submit" value="Hitung BMI"></input>
+                        <input type="reset" value="Reset" onclick="resetbutton()"></input>
+                    </form>
+                </section>
+                
+                <h2>
+                    Manfaat Kalkulator BMI:
+                </h2>
+                <section class="calculation-benefit-container"> 
+                    <div class="calculation-benefit-each-container">
+                        <div class="calculation-benefit-number">
+                            1
+                        </div>
+                        <div>
+                            <div class="calculation-benefit-detail-title">
+                                Mengetahui Status Berat Badan
+                            </div>
+                            <div class="calculation-benefit-detail-description">
+                                Dengan menggunakan kalkulator BMI, Anda dapat mengetahui status berat badan 
+                                Anda apakah termasuk dalam kategori berat badan normal, di bawah berat, 
+                                kelebihan berat, atau obesitas.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calculation-benefit-each-container">
+                        <div class="calculation-benefit-number">
+                            2
+                        </div>
+                        <div>
+                            <div class="calculation-benefit-detail-title">
+                                Mengukur Risiko Kesehatan
+                            </div>
+                            <div class="calculation-benefit-detail-description">
+                                BMI dapat memberikan gambaran umum tentang risiko kesehatan yang terkait 
+                                dengan berat badan. Orang dengan BMI di luar kisaran normal mungkin memiliki risiko 
+                                lebih tinggi untuk mengembangkan berbagai penyakit, seperti penyakit jantung, 
+                                diabetes, dan tekanan darah tinggi.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calculation-benefit-each-container">
+                        <div class="calculation-benefit-number">
+                            3
+                        </div>
+                        <div>
+                            <div class="calculation-benefit-detail-title">
+                                Menetapkan Tujuan Kesehatan
+                            </div>
+                            <div class="calculation-benefit-detail-description">
+                                Jika Anda memiliki BMI di luar kisaran yang sehat, kalkulator BMI dapat 
+                                membantu Anda menetapkan tujuan kesehatan yang realistis. Dengan mengetahui 
+                                di mana Anda berada saat ini, Anda dapat merencanakan langkah-langkah yang 
+                                diperlukan untuk mencapai berat badan yang sehat dan mempertahankannya.        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calculation-benefit-each-container">
+                        <div class="calculation-benefit-number">
+                            4
+                        </div>
+                        <div>
+                            <div class="calculation-benefit-detail-title">
+                                Memonitor Perkembangan
+                            </div>
+                            <div class="calculation-benefit-detail-description">
+                                Menggunakan kalkulator BMI secara berkala dapat membantu Anda memantau perkembangan 
+                                Anda dalam mencapai tujuan kesehatan Anda. Dengan melihat perubahan dalam BMI Anda
+                                dari waktu ke waktu, Anda dapat menilai apakah strategi yang Anda terapkan efektif 
+                                atau memerlukan penyesuaian.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="result-page"> 
+                <h2>Hasil Perhitungan Kalkulator BMI</h2>
+                <section class="overall-result">
+                    <span class="overall-result-review" id="overall-result-review"></span>
+                    <span class="overall-result-number" id="result-number"></span>
+                    <div class="overall-result-description" id="result-category"></div>
+                    <div class="overall-result-user"><span id="span-gender"></span><span id="span-age"></span><span id="span-weight"></span><span id="span-height"></span></b></div>
+                    
+                    <button class="overall-result-button" id="overall-result-button" onclick="overall_result()">Download Hasil BMI di sini</button>
+                </section>
+
+                <section class="result-detail-container">
+                    <div class="result-detail-title" id="result-number-range"></div>
+                    <div class="result-detail-category"  id="result-category-detail"> </div>
+                    <div class="result-detail-description" id="result-category-description"></div>
+
+                    <div class="result-detail-button-container" id="result-detail-button-container" >
+                        <button class="result-detail-button" id="result-detail-button" onclick="wa_click()">Konsultasi Ahli Gizi via Aplikasi</button>
+                        <button class="result-detail-button" id="result-detail-button" onclick="registration_button()">Registrasi Online Ahli Gizi</button>
+                    </div>
+                </section>
+                
+                
+                <section class="health-result-container">
+                    <div id="risk-health-category"></div>
+                    <ul id="risk-health-detail"></ul>
+                    <div class="health-button-container">
+                        <button class="health-button" onclick="wa_click()">Konsultasi Dokter via Aplikasi</button>
+                        <button class="health-button" onclick="registration_button()">Registrasi Online Sekarang</button>
+                    </div>
+                </section>
+            </section>
+        </main>
+        <script src="js/script.js"></script>
+    </body>
+
+    <footer class="footer-page">
+        <h3>Download Aplikasi</h3>
+        <section class="footer-page-details">
+            <img class="footer-images" src="assets/google-play.png">
+            <img class="footer-images" src="assets/app-store.png">
+        </section>
+    </footer>
+
+
+</html>
